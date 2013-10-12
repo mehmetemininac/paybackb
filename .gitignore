@@ -1,0 +1,4 @@
+tmp/
+log/
+backup.tar
+.DS_STORE

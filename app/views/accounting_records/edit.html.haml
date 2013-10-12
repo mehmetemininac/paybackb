@@ -1,0 +1,28 @@
+#edit_accounting_page
+	=render :partial => "date_picker"
+	.title
+		Kayıt Güncelle
+	=messages_for @record
+	.form
+		=form_for @record do |f|
+
+			.input
+				= f.label :value
+				= f.text_field :value
+				TL
+
+			.input
+				= f.label :bank_rate
+				= f.text_field :bank_rate, :html => {:length => "3"}
+				\%
+
+			.input
+				= f.label :due_date
+				= f.text_field :due_date
+
+			.input
+				= f.label :note
+				= f.text_area :note
+
+			.input
+				= f.submit "Güncelle"

@@ -1,0 +1,23 @@
+.messages#system_messages
+  -if flash[:notice]
+    .note_box
+      %div
+        %p
+          =flash[:notice]
+  -if flash[:alert]
+    .error
+      %div
+        %p
+          =flash[:alert]
+  -if flash[:success]
+    .success
+      %div
+        %p
+          =flash[:success]
+  -if obj != nil && obj.errors.any?
+    .error
+      %div
+        %ul
+          -obj.errors.full_messages.each do |m|
+            %li.message
+              =m

@@ -1,0 +1,23 @@
+#show_contact_page
+	= render :partial => "shared/sub_menu", :locals => {:menu_elements => @sub_menu_elements}
+	.title
+		= @contact.name
+	%p
+		E-Posta : #{@contact.email}
+	%p
+		Tel : #{@contact.phone}
+	%p
+		Cep-Tel : #{@contact.mobile}
+	%p
+		Adres : #{@contact.address}
+
+	%div
+		Bu kişiye olan toplam borcun #{@contact.total_debt} TL, toplam alacağın #{@contact.total_credit} TL
+
+	%div
+		%p
+			Kişiye olan borcunu unutup rezil olmamak için 
+			=link_to "borç kaydı oluştur", new_debt_accounting_records_path
+		%p
+			Milyonerde olsan hazıra dağ dayanmaz, dağıta dağıta inekler aç kalmış :)
+			=link_to "alacak kaydı oluştur", new_credit_accounting_records_path

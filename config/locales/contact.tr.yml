@@ -1,0 +1,11 @@
+tr:
+  activerecord:
+    models:
+      contact: "Kişi Kaydı"
+    attributes:
+      contact:
+        name: İsim
+        email: E-Posta
+        phone: Telefon
+        mobile: Cep Tel
+        address: Adres

@@ -1,0 +1,6 @@
+<%if @result %>
+	$('#system_messages').html("<div class='success'>İşlem Başarılı...</div>");
+	$('#record_status_area_<%= @record.id %>').html('<%= @record.status %>')
+<% else %>
+	$('#system_messages .alert').html("Hata oluştu, lütfen daha sonra tekrar deneyin!");
+<% end %>

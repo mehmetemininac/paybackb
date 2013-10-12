@@ -1,0 +1,5 @@
+#new_contact_page
+	= render :partial => "shared/sub_menu", :locals => {:menu_elements => @sub_menu_elements}
+	.title
+		Kişi Ekle
+	= render :partial => "form", :locals => {:object => @contact}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloudarena</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="main">
+		<header>
+			<%= render :partial => 'shared/header' %>
+		</header>
+		<div class="main_content">
+			<%= yield %>
+		</div>
+		<footer>
+			<%= render :partial => 'shared/footer' %>
+		</footer>
+	</div>
+</body>
+</html>

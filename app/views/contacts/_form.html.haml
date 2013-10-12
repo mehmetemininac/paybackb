@@ -1,0 +1,25 @@
+=messages_for object
+.form
+	=form_for object do |f|
+		.input
+			= f.label :name
+			= f.text_field :name
+
+		.input
+			= f.label :email
+			= f.text_field :email
+
+		.input
+			= f.label :phone
+			= f.text_field :phone
+
+		.input
+			= f.label :mobile
+			= f.text_field :mobile
+
+		.input
+			= f.label :address
+			= f.text_area :address
+
+		.input
+			= f.submit "Ekle"

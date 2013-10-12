@@ -1,0 +1,4 @@
+%ul.sub_menu
+	-menu_elements.each do |elem|
+		%li
+			=link_to elem[:text], elem[:to]

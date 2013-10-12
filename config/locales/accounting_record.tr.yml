@@ -1,0 +1,16 @@
+tr:
+  activerecord:
+    models:
+      accounting_record: "Muhasebe Kaydı"
+    attributes:
+      accounting_record:
+        record_type: Tür
+        value: Tutar
+        bank_rate: Faiz Oranı
+        due_date: Taahhüt
+        note: Not
+        contact: Kişi
+  misc_accounting_record:
+    with_new_contact: "Yeni bir kişi ile oluştur"
+    credit_contact: Borçlu
+    debt_contact: Alacaklı

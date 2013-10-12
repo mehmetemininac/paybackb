@@ -1,0 +1,10 @@
+#my_profile_profiles_page
+	.title
+		Profilim
+	%div
+		%p
+			Merhaba #{current_user.user_name}, hesabında ekli kişi sayısı #{current_user.contacts.count} adet.
+		%p
+			Toplam #{current_user.accounting_records.count} muhasebe kaydından #{current_user.active_records_count} tanesi aktif, #{current_user.passive_records_count} tanesi pasif olarak görünüyor.
+		%p
+			Toplam borcun #{current_user.total_debt} TL iken, toplam alacağın #{current_user.total_credit} TL dir.

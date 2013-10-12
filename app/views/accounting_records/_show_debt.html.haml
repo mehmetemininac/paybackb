@@ -1,0 +1,19 @@
+%p
+	Alacaklı : #{record.contact.name}
+%p
+	Borç Bedeli : #{record.value} TL
+%p
+	Faiz Oranı(aylık) : #{record.bank_rate}%
+%p
+	Faiz Sonrası : #{record.get_total_value} TL
+%p
+	Due Date : #{record.due_date.nil? ? "#" : localize(record.due_date, :format => "%d %B %Y")}
+%p
+	Oluşturulma Zamanı : #{localize(record.created_at, :format => "%d %B %Y Saat %H:%M:%S")}
+%p
+	Not : #{record.note}
+
+%div
+	-if !record.due_date.nil? && record.due_date < Time.zone.now
+		%p
+			Borcunuzu ödemeyi taahhüt ettiğiniz süre dolmuştur. En kısa sürede ödeme yapın.

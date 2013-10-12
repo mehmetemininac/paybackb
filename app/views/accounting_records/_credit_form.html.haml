@@ -1,0 +1,58 @@
+=render :partial => "date_picker"
+=messages_for object
+.form
+	=form_for object do |f|
+		= f.hidden_field :record_type
+
+		.input
+			%label{:for => :with_new_contact} #{t("misc_accounting_record.with_new_contact")}
+			=check_box_tag :with_new_contact, true, false, :onclick => "set_new_contact_area();"
+
+		#contact_area
+			.input
+				= f.label :contact_id, t("misc_accounting_record.credit_contact")
+				= f.collection_select :contact_id, @contacts, :id, :name, {:include_blank => false}
+
+		.input
+			= f.label :value
+			= f.text_field :value
+			TL
+
+		.input
+			= f.label :bank_rate
+			= f.text_field :bank_rate, :html => {:length => "3"}
+			\%
+
+		.input
+			= f.label :due_date
+			= f.text_field :due_date
+
+		.input
+			= f.label :note
+			= f.text_area :note
+
+		.input
+			= f.submit "Ekle"
+
+#hidden_contact_attributes
+	=form_for object do |f|
+		=f.fields_for :contact do |c|
+			.input
+				= c.label :name
+				= c.text_field :name
+
+			.input
+				= c.label :email
+				= c.text_field :email
+
+			.input
+				= c.label :phone
+				= c.text_field :phone
+
+			.input
+				= c.label :mobile
+				= c.text_field :mobile
+
+			.input
+				= c.label :address
+				= c.text_area :address

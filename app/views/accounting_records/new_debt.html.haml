@@ -1,0 +1,5 @@
+#new_debt_page
+	= render :partial => "shared/sub_menu", :locals => {:menu_elements => @sub_menu_elements}
+	.title
+		Borç Ekle
+	= render :partial => "debt_form", :locals => {:object => @record}

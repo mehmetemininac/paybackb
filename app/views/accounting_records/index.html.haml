@@ -1,0 +1,37 @@
+#index_accounting_records
+	= render :partial => "shared/sub_menu", :locals => {:menu_elements => @sub_menu_elements}
+	= messages_for
+
+	.table_content
+		%table
+			%thead
+				%tr
+					%th{:width => "10"} #
+					%th{:width => "230"} Alacaklı/Borçlu
+					%th{:width => "250"} Tutar(TL)
+					%th{:width => "130"} Vade Sonu
+					%th{:width => "180"} Oluşturulma T.
+					%th{:width => "130"} Durum
+					%th{:width => "130"} Tür
+					%th{:width => "180"} İşlemler
+			%tbody
+				- @accounting_records.each do |record|
+					%tr{:class => "#{cycle('odd', 'even')}", :id => "record_raw_data_#{record.id}"}
+						%td #{record.id}
+						%td &nbsp; #{record.contact.name}
+						%td #{record.value}
+						%td{:align => "center"} 
+							= record.due_date.nil? ? '#' : localize(record.due_date, :format => "%d %B %Y")
+						%td{:align => "center"} #{localize(record.created_at, :format => "%d %B %Y")}
+						%td{:id => "record_status_area_#{record.id}", :align => "center"} #{record.status}
+						%td{:align => "center"} #{record.get_record_type_s}
+						%td{:align => "center"}
+							=link_to "sil", accounting_record_path(record.id), :method => :delete, :confirm => "Emin misiniz?"
+							|
+							=link_to "düzenle", edit_accounting_record_path(record.id)
+							|
+							=link_to "incele", accounting_record_path(record.id)
+							|
+							=link_to "ödendi", payed_accounting_record_path(record.id), :remote => true
+		.pagination
+			=will_paginate(@contacts, {:inner_window => 8})

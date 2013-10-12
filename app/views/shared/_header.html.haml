@@ -1,0 +1,16 @@
+.logo
+	.highlight
+		=link_to "P B B", root_path
+	.sub_text
+		=link_to "Pay back bitch", root_path
+.navigation
+	-if user_signed_in?
+		=link_to "Profilim", my_profile_profiles_path
+		=link_to "Muhasebe Defteri", accounting_records_path
+		=link_to "Kişiler", contacts_path
+		=link_to "Çıkış", destroy_user_session_path, :method => :delete
+	-else
+		=link_to "Üye Ol", new_user_registration_path
+		=link_to "Giriş Yap", new_user_session_path
+		=link_to "Facebook İle Gir", user_omniauth_authorize_path(:facebook)
+		=link_to "Twitter İle Gir", user_omniauth_authorize_path(:twitter)

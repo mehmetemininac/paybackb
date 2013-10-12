@@ -1,0 +1,29 @@
+#index_contact_page
+	= render :partial => "shared/sub_menu", :locals => {:menu_elements => @sub_menu_elements}
+	= messages_for
+	.table_content
+		%table
+			%thead
+				%tr
+					%th{:width => "10"} #
+					%th{:width => "230"} Adı
+					%th{:width => "250"} E-Posta
+					%th{:width => "130"} Telefon
+					%th{:width => "130"} Cep Tel
+					%th{:width => "180"} İşlemler
+			%tbody
+				- @contacts.each do |contact|
+					%tr{:class => "#{cycle('odd', 'even')}"}
+						%td #{contact.id}
+						%td &nbsp; #{contact.name}
+						%td #{contact.email}
+						%td{:align => "center"} #{contact.phone}
+						%td{:align => "center"} #{contact.mobile}
+						%td{:align => "center"}
+							=link_to "sil", contact_path(contact.id), :method => :delete, :confirm => "Emin misiniz?"
+							|
+							=link_to "düzenle", edit_contact_path(contact.id)
+							|
+							=link_to "incele", contact_path(contact.id)
+		.pagination
+			=will_paginate(@contacts, {:inner_window => 8})
