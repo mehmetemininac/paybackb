@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012134031) do
+ActiveRecord::Schema.define(version: 20131012205544) do
 
   create_table "accounting_records", force: true do |t|
     t.integer  "user_id"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20131012134031) do
   create_table "contacts", force: true do |t|
     t.string   "name",       limit: 50
     t.string   "email",      limit: 60
-    t.string   "phone",      limit: 10
-    t.string   "mobile",     limit: 10
+    t.string   "phone",      limit: 15
+    t.string   "mobile",     limit: 15
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
