@@ -1,7 +1,7 @@
 # encoding: utf-8
 class ContactsController < ApplicationController
 	before_filter :authenticate_user!
-	before_action :find_contact, :only => [:show, :edit, :destroy]
+	before_action :find_contact, :only => [:show, :edit, :destroy, :update]
 	before_action :prepare_sub_menu
 
 	def index
@@ -16,6 +16,15 @@ class ContactsController < ApplicationController
 	end
 
 	def edit
+	end
+
+	def update
+		if @contact.update_attributes(get_permitted_parameters)
+			flash[:success] = "Kişi kaydı güncellendi"
+			redirect_to :action => :index
+		else
+			render :action => :edit
+		end
 	end
 
 	def create
