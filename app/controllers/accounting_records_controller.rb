@@ -20,11 +20,16 @@ class AccountingRecordsController < ApplicationController
 	end
 
 	def publish_on_facebook
-		current_user.facebook.feed!(
-			:message => "#{@record.contact.name} sana verdiğim #{@record.value} ne oldu ?",
-			:name => 'paybackb'
-		)
-		flash[:success] = "İçerik paylaşıldı..."
+		success = true
+		begin
+			current_user.facebook.feed!(
+				:message => "#{@record.contact.name} sana verdiğim #{@record.value} ne oldu ?",
+				:name => 'paybackb'
+			)
+		rescue
+			success = false
+		end
+		success ? flash[:success] = "İçerik paylaşıldı..." : flash[:alert] = "İçerik paylaşımı sırasında hata oluştu, lütfen tekrar deneyin."
 		redirect_to :back
 	end
 
