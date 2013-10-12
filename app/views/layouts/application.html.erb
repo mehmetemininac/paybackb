@@ -3,7 +3,7 @@
 <head>
   <title>PayBackBitch</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "requirements", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -18,5 +18,6 @@
 			<%= render :partial => 'shared/footer' %>
 		</footer>
 	</div>
+	<%= javascript_include_tag "application" %>
 </body>
 </html>

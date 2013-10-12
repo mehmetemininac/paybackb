@@ -10,5 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require contacts.js
-//= require accounting_records.js
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require jquery.maskedinput.min.js
