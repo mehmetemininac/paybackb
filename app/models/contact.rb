@@ -8,8 +8,8 @@ class Contact < ActiveRecord::Base
 
 	validates_length_of :name, :maximum => 50
 	validates_length_of :email, :maximum => 60
-	validates_length_of :phone, :maximum => 10
-	validates_length_of :mobile, :maximum => 10
+	validates_length_of :phone, :maximum => 15
+	validates_length_of :mobile, :maximum => 15
 	validates_length_of :address, :maximum => 255
 
 	scope :with_virtual_statistics, -> {
