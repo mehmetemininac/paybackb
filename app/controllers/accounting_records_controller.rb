@@ -1,7 +1,7 @@
 # encoding: utf-8
 class AccountingRecordsController < ApplicationController
 	before_filter :authenticate_user!
-	before_action :find_record, :only => [:show, :edit, :destroy, :payed]
+	before_action :find_record, :only => [:show, :edit, :destroy, :payed, :publish_on_facebook]
 	before_action :prepare_sub_menu
 
 	def index
@@ -17,6 +17,15 @@ class AccountingRecordsController < ApplicationController
 	end
 
 	def show
+	end
+
+	def publish_on_facebook
+		current_user.facebook.feed!(
+			:message => "#{@record.contact.name} sana verdiğim #{@record.value} ne oldu ?",
+			:name => 'paybackb'
+		)
+		flash[:success] = "İçerik paylaşıldı..."
+		redirect_to :back
 	end
 
 	def payed
@@ -52,6 +61,10 @@ class AccountingRecordsController < ApplicationController
 private
 	def find_record
 		@record = AccountingRecord.find(params[:id])
+		if @record.user.id != current_user.id
+			flash[:alert] = "Bu içeriği görüntüleme yetkiniz bulunmamakta!"
+			return redirect_to accounting_records_path
+		end
 	end
 
 	def prepare_sub_menu

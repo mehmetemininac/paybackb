@@ -1,5 +1,6 @@
 #show_record_page
 	= render :partial => "shared/sub_menu", :locals => {:menu_elements => @sub_menu_elements}
+	= messages_for
 	.title
 		#{@record.id} no'lu kayıt
 	= render :partial => @record.record_type == "credit" ? "show_credit" : "show_debt", :locals => {:record => @record}

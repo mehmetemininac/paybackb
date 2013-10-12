@@ -11,6 +11,7 @@ Cloudarena::Application.routes.draw do
   resources :accounting_records, :path => "muhasebe-defteri" do
     member do
       get :payed, :path => "odendi"
+      get :publish_on_facebook, :path => "facebookta-paylas"
     end
     collection do
       get :new_credit, :path => "alacak-ekle"

@@ -36,6 +36,10 @@ class ContactsController < ApplicationController
 private
 	def find_contact
 		@contact = Contact.with_virtual_statistics.find(params[:id])
+		if @contact.user.id != current_user.id
+			flash[:alert] = "Bu içeriği görüntüleme yetkiniz yok!"
+			return redirect_to contacts_path
+		end
 	end
 	def prepare_sub_menu
 		@sub_menu_elements = [

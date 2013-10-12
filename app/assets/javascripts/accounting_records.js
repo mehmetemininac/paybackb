@@ -14,3 +14,12 @@ function set_new_contact_area(){
 		$('#hidden_contact_attributes').html(hidden_attribtues);
 	}
 }
+
+$(window).load(
+  function(){
+    if($("#new_contact_page").length || $("#edit_contact_page").length){
+      $("#contact_phone").mask("(999) 999 99 99");
+      $("#contact_mobile").mask("(999) 999 99 99");
+    }
+  }
+);

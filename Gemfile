@@ -18,6 +18,7 @@ gem 'devise' , '~> 3.0.0'
 gem 'devise-encryptable'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'fb_graph'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'

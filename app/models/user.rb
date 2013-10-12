@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  has_many :accounting_records
   has_many :contacts
+  has_many :accounting_records, :through => :contacts
 
   validates_presence_of :user_name
   validates_uniqueness_of :user_name
@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.user_name = auth.info.nickname
+      if auth.provider == "facebook"
+        user.token = auth.credentials.token 
+        user.email = auth.info.email
+      end
     end
   end
 
@@ -29,10 +33,6 @@ class User < ActiveRecord::Base
     else
       super
     end
-  end
-
-  def email_required?
-    super && provider.blank?
   end
 
   def password_required?
@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
 
   def total_debt
     self.accounting_records.where("record_type = ?", :debt).sum("value")
+  end
+
+  def facebook
+    FbGraph::User.me(self.token)
   end
 
 end

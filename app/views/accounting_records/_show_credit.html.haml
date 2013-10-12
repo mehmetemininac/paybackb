@@ -17,11 +17,23 @@
 	-if !record.due_date.nil? && record.due_date < Time.zone.now
 		%p
 			Borçlu, alacağınızı zamanında ödememiş. Bu konu hakkında onu bilgilendirmek yada rezil etmek istermisiniz?
+		-if !current_user.token.nil?
+			%p
+				=link_to "Facebook'ta paylaş", publish_on_facebook_accounting_record_path
+				herkes duysun.
 		%p
-			=link_to "Facebook'ta paylaş", "#"
-			herkes duysun.
-		%p
-			=link_to "Twit at", "#"
+			=link_to "Twit at", "https://twitter.com/share", :class => "twitter-share-button", "data-lang" => "tr", "data-text" => "#{record.contact.name}, nerde sana verdiğim borç #{record.value} TL kardeş?", "data-count" => "none"
+			:javascript
+				!function(d,s,id){
+					var js,fjs=d.getElementsByTagName(s)[0];
+					if(!d.getElementById(id)){
+						js=d.createElement(s);
+						js.id=id;
+						js.src="https://platform.twitter.com/widgets.js";
+						fjs.parentNode.insertBefore(js,fjs);
+					}
+				}
+				(document,"script","twitter-wjs");
 			sağır sultan bile duysun.
 		%p
 			Not: Şu fani dünya için arkadaşlarını kırmaya değmez bence mübarek :)

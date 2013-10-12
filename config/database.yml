@@ -55,7 +55,9 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: cloudarena_production
+  database: d2sbo0gfg5rom0
   pool: 5
-  username: cloudarena
-  password:
+  username: cfoggtlwdnhvif
+  password: vc3YnRxAUn5KqUIddI2mRetXE5
+  host: ec2-23-21-133-106.compute-1.amazonaws.com
+  port: 5432
