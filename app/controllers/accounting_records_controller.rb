@@ -1,7 +1,7 @@
 # encoding: utf-8
 class AccountingRecordsController < ApplicationController
 	before_filter :authenticate_user!
-	before_action :find_record, :only => [:show, :edit, :destroy, :payed, :publish_on_facebook]
+	before_action :find_record, :only => [:show, :edit, :destroy, :payed, :publish_on_facebook, :update]
 	before_action :prepare_sub_menu
 
 	def index
@@ -17,6 +17,14 @@ class AccountingRecordsController < ApplicationController
 	end
 
 	def show
+	end
+
+	def update
+		if @record.update_attributes(get_permitted_parameters)
+			flash[:success] = "Kayıt güncellendi"
+		else
+			render :action => new
+		end
 	end
 
 	def publish_on_facebook
