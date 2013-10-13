@@ -22,8 +22,9 @@ class AccountingRecordsController < ApplicationController
 	def update
 		if @record.update_attributes(get_permitted_parameters)
 			flash[:success] = "Kayıt güncellendi"
+			redirect_to :action => :index
 		else
-			render :action => new
+			render :action => :edit
 		end
 	end
 
