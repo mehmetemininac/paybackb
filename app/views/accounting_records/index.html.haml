@@ -8,11 +8,16 @@
 				%tr
 					%th{:width => "10"} #
 					%th{:width => "230"} Alacaklı/Borçlu
-					%th{:width => "250"} Tutar(TL)
-					%th{:width => "130"} Vade Sonu
-					%th{:width => "180"} Oluşturulma T.
-					%th{:width => "130"} Durum
-					%th{:width => "130"} Tür
+					%th{:width => "250"}
+						= sort_link @search, :value, "Tutar(TL)"
+					%th{:width => "130"}
+						= sort_link @search, :due_date, "Vade Sonu"
+					%th{:width => "180"}
+						= sort_link @search, :created_at, "Oluşturulma T."
+					%th{:width => "130"}
+						= sort_link @search, :is_active, "Durum"
+					%th{:width => "130"}
+						= sort_link @search, :record_type, "Tür"
 					%th{:width => "180"} İşlemler
 			%tbody
 				- @accounting_records.each do |record|

@@ -5,7 +5,9 @@ class AccountingRecordsController < ApplicationController
 	before_action :prepare_sub_menu
 
 	def index
-		@accounting_records = current_user.accounting_records.paginate(:page => params[:page], :per_page => 20)
+		@search = current_user.accounting_records.search(params[:search])
+		@search.sorts = 'id desc' if @search.sorts.empty?
+		@accounting_records = @search.result.paginate(:page => params[:page], :per_page => 20)
 	end
 
 	def destroy
