@@ -48,11 +48,11 @@ class User < ActiveRecord::Base
   end
 
   def total_credit
-    self.accounting_records.where("record_type = ?", :credit).sum("value")
+    self.accounting_records.where("is_active IS TRUE AND record_type = ?", :credit).sum("value")
   end
 
   def total_debt
-    self.accounting_records.where("record_type = ?", :debt).sum("value")
+    self.accounting_records.where("is_active IS TRUE AND record_type = ?", :debt).sum("value")
   end
 
   def facebook

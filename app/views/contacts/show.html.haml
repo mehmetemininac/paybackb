@@ -12,7 +12,7 @@
 		Adres : #{@contact.address}
 
 	%div
-		Bu kişiye olan toplam borcun #{@contact.total_debt} TL, toplam alacağın #{@contact.total_credit} TL
+		Bu kişiye olan toplam borcun #{@contact.total_debt.blank? ? 0 : @contact.total_debt} TL, toplam alacağın #{@contact.total_credit.blank? ? 0 : @contact.total_credit} TL
 
 	%div
 		%p
