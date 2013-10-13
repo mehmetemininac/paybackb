@@ -54,8 +54,6 @@ GEM
       json (>= 1.4.3)
       oauth2 (>= 0.1.0)
       rest-client (>= 1.4)
-    friendly_id (5.0.0.rc3)
-      activerecord (~> 4.0.0)
     haml (4.0.3)
       tilt
     hashie (2.0.5)
@@ -177,7 +175,6 @@ DEPENDENCIES
   devise (~> 3.0.0)
   devise-encryptable
   fb_graph
-  friendly_id (~> 5.0.0.rc1)
   haml
   jbuilder (~> 1.2)
   jquery-rails

@@ -10,8 +10,6 @@ gem 'activerecord-postgresql-adapter'
 gem 'haml'
 gem 'will_paginate'
 
-gem "friendly_id", '~> 5.0.0.rc1'
-
 gem 'ransack'
 
 gem 'devise' , '~> 3.0.0'
