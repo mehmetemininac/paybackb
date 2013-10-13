@@ -224,6 +224,14 @@ header{
 		}
 	}
 }
+form#new_user{
+  margin-bottom: 30px;
+}
+#devise_shared_links{
+  a{
+    padding: 0px;
+  }
+}
 #edit_contact_page{
 	.form{
 		float:left;
