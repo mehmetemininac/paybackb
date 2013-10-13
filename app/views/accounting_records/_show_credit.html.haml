@@ -14,7 +14,7 @@
 	Not : #{record.note}
 
 %div
-	-if !record.due_date.nil? && record.due_date < Time.zone.now
+	-if record.is_active? && !record.due_date.nil? && record.due_date < Time.zone.now
 		%p
 			Borçlu, alacağınızı zamanında ödememiş. Bu konu hakkında onu bilgilendirmek yada rezil etmek istermisiniz?
 		-if !current_user.token.nil?
@@ -37,3 +37,30 @@
 			sağır sultan bile duysun.
 		%p
 			Not: Şu fani dünya için arkadaşlarını kırmaya değmez bence mübarek :)
+	-elsif !record.is_active?
+		%p
+			Alacağını tahsil etmişsin.
+	-elsif !record.due_date.nil?
+		%p
+			Alacağının son ödeme tarihine daha #{distance_of_time_in_words(Time.zone.now, record.due_date)} var
+		-if !current_user.token.nil?
+			%p
+				=link_to "Facebook'ta paylaş", publish_on_facebook_accounting_record_path
+				hatırlatmak için paylaş.
+		%p
+			=link_to "Twit at", "https://twitter.com/share", :class => "twitter-share-button", "data-lang" => "tr", "data-text" => "#{record.contact.name}, nerde sana verdiğim borç #{record.value} TL kardeş?", "data-count" => "none"
+			:javascript
+				!function(d,s,id){
+					var js,fjs=d.getElementsByTagName(s)[0];
+					if(!d.getElementById(id)){
+						js=d.createElement(s);
+						js.id=id;
+						js.src="https://platform.twitter.com/widgets.js";
+						fjs.parentNode.insertBefore(js,fjs);
+					}
+				}
+				(document,"script","twitter-wjs");
+			hatırlatmak için tweet at.
+	-else
+		%p
+			Alacağın halen aktif fakat alacağın için taahhüt tarihi girilmemiş.

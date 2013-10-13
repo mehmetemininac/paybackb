@@ -14,6 +14,15 @@
 	Not : #{record.note}
 
 %div
-	-if !record.due_date.nil? && record.due_date < Time.zone.now
+	-if record.is_active? && !record.due_date.nil? && record.due_date < Time.zone.now
 		%p
-			Borcunuzu ödemeyi taahhüt ettiğiniz süre dolmuştur. En kısa sürede ödeme yapın.
+			Borcunu ödemeyi taahhüt ettiğin süre dolmuş. En kısa sürede ödeme yap.
+	-elsif !record.is_active?
+		%p
+			Borcunu ödemişsin.
+	-elsif !record.due_date.nil?
+		%p
+			Borcunun son ödeme tarihine daha #{distance_of_time_in_words(Time.zone.now, record.due_date)} var
+	-else
+		%p
+			Borcun halen aktif fakat son ödeme tarihi girilmemiş.
